@@ -1,3 +1,40 @@
+-- 动态表单设计Sql
+CREATE TABLE `form_design` (
+  `id` bigint(20) NOT NULL COMMENT 'ID',
+  `form_name` varchar(200) DEFAULT NULL COMMENT '表单名',
+  `template` text DEFAULT NULL COMMENT '页面编辑好的原始html',
+  `html` text DEFAULT NULL COMMENT '反解析出来的页面html代码',
+  `data_str` text DEFAULT NULL COMMENT '自定义的各个控件字段的jsonarray格式存储',
+  `parse` text DEFAULT NULL COMMENT '',
+  `fields` bigint(10) DEFAULT NULL COMMENT '',
+  `is_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  `create_user` varchar(32) DEFAULT NULL COMMENT '登录者',
+  `create_time` bigint(20) DEFAULT NULL COMMENT '登录时间',
+  `op_user` varchar(32) DEFAULT NULL COMMENT '更新者',
+  `op_time` bigint(20) DEFAULT NULL COMMENT '更新时间',
+  `last_ver` smallint(6) NOT NULL DEFAULT '0' COMMENT '版本号',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='自定义表单';
+
+
+CREATE TABLE `form_start` (
+  `id` bigint(20) NOT NULL COMMENT 'ID',
+  `form_id` bigint(20) DEFAULT NULL COMMENT '表单ID',
+  `form_value` text DEFAULT NULL COMMENT '存储此次填写的动态表单数据Json',
+  `is_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否有效',
+  `create_user` varchar(32) DEFAULT NULL COMMENT '登录者',
+  `create_time` bigint(20) DEFAULT NULL COMMENT '登录时间',
+  `op_user` varchar(32) DEFAULT NULL COMMENT '更新者',
+  `op_time` bigint(20) DEFAULT NULL COMMENT '更新时间',
+  `last_ver` smallint(6) NOT NULL DEFAULT '0' COMMENT '版本号',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='发起表单';
+
+
+
+
+-- 系统Sql
+
 create table schedule_job
 (
   job_id          bigint auto_increment

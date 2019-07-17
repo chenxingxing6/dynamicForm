@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.modules.sys.dao.FormDesignDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.modules.sys.entity.FormDesignEntity" id="formDesignMap">
+        <result property="id" column="id"/>
+        <result property="formName" column="form_name"/>
+        <result property="template" column="template"/>
+        <result property="html" column="html"/>
+        <result property="dataStr" column="data_str"/>
+        <result property="parse" column="parse"/>
+        <result property="fields" column="fields"/>
+        <result property="isValid" column="is_valid"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createTime" column="create_time"/>
+        <result property="opUser" column="op_user"/>
+        <result property="opTime" column="op_time"/>
+        <result property="lastVer" column="last_ver"/>
+    </resultMap>
+
+
+</mapper>
