@@ -25,79 +25,25 @@
     <div v-show="!showList" class="panel panel-default">
         <div class="panel-heading">{{title}}</div>
         <form class="form-horizontal">
-														                    <div class="form-group">
-                        <div class="col-sm-2 control-label">表单名</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.formName" placeholder="表单名"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">页面编辑好的原始html</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.template" placeholder="页面编辑好的原始html"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">反解析出来的页面html代码</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.html" placeholder="反解析出来的页面html代码"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">自定义的各个控件字段的jsonarray格式存储</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.dataStr" placeholder="自定义的各个控件字段的jsonarray格式存储"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label"></div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.parse" placeholder=""/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label"></div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.fields" placeholder=""/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">是否有效</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.isValid" placeholder="是否有效"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">登录者</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.createUser" placeholder="登录者"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">登录时间</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.createTime" placeholder="登录时间"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">更新者</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.opUser" placeholder="更新者"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">更新时间</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.opTime" placeholder="更新时间"/>
-                        </div>
-                    </div>
-											                    <div class="form-group">
-                        <div class="col-sm-2 control-label">版本号</div>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="formDesign.lastVer" placeholder="版本号"/>
-                        </div>
-                    </div>
-							            <div class="form-group">
+            <div class="form-group">
+                <div class="col-sm-2 control-label">表单名</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="formDesign.formName" placeholder="表单名"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">页面Html</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="formDesign.html" placeholder="页面Html"/>
+                </div>
+            </div>
+                                                        <div class="form-group">
+                <div class="col-sm-2 control-label">控件字段Json</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="formDesign.dataStr" placeholder="控件字段Json"/>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-2 control-label"></div>
                 <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
                 &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>

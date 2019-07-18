@@ -2,6 +2,7 @@ package com.example.modules.sys.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
  *
  * @author lanxinghua
  * @email lanxinghua@2dfire.com
- * @date 2019-07-17 21:34:56
+ * @date 2019-07-18 14:07:02
  */
 @TableName("form_design")
 public class FormDesignEntity implements Serializable {
@@ -20,32 +21,20 @@ public class FormDesignEntity implements Serializable {
 	/**
 	 * ID
 	 */
-	@TableId
+	@TableId(value = "id", type = IdType.INPUT)
 	private Long id;
 	/**
 	 * 表单名
 	 */
 	private String formName;
 	/**
-	 * 页面编辑好的原始html
-	 */
-	private String template;
-	/**
-	 * 反解析出来的页面html代码
+	 * 页面html代码
 	 */
 	private String html;
 	/**
-	 * 自定义的各个控件字段的jsonarray格式存储
+	 * 控件字段的json
 	 */
 	private String dataStr;
-	/**
-	 *
-	 */
-	private String parse;
-	/**
-	 *
-	 */
-	private Long fields;
 	/**
 	 * 是否有效
 	 */
@@ -96,64 +85,28 @@ public class FormDesignEntity implements Serializable {
 		return formName;
 	}
 	/**
-	 * 设置：页面编辑好的原始html
-	 */
-	public void setTemplate(String template) {
-		this.template = template;
-	}
-	/**
-	 * 获取：页面编辑好的原始html
-	 */
-	public String getTemplate() {
-		return template;
-	}
-	/**
-	 * 设置：反解析出来的页面html代码
+	 * 设置：页面html代码
 	 */
 	public void setHtml(String html) {
 		this.html = html;
 	}
 	/**
-	 * 获取：反解析出来的页面html代码
+	 * 获取：页面html代码
 	 */
 	public String getHtml() {
 		return html;
 	}
 	/**
-	 * 设置：自定义的各个控件字段的jsonarray格式存储
+	 * 设置：控件字段的json
 	 */
 	public void setDataStr(String dataStr) {
 		this.dataStr = dataStr;
 	}
 	/**
-	 * 获取：自定义的各个控件字段的jsonarray格式存储
+	 * 获取：控件字段的json
 	 */
 	public String getDataStr() {
 		return dataStr;
-	}
-	/**
-	 * 设置：
-	 */
-	public void setParse(String parse) {
-		this.parse = parse;
-	}
-	/**
-	 * 获取：
-	 */
-	public String getParse() {
-		return parse;
-	}
-	/**
-	 * 设置：
-	 */
-	public void setFields(Long fields) {
-		this.fields = fields;
-	}
-	/**
-	 * 获取：
-	 */
-	public Long getFields() {
-		return fields;
 	}
 	/**
 	 * 设置：是否有效

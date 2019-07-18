@@ -7,11 +7,8 @@
     <resultMap type="com.example.modules.sys.entity.FormDesignEntity" id="formDesignMap">
         <result property="id" column="id"/>
         <result property="formName" column="form_name"/>
-        <result property="template" column="template"/>
         <result property="html" column="html"/>
         <result property="dataStr" column="data_str"/>
-        <result property="parse" column="parse"/>
-        <result property="fields" column="fields"/>
         <result property="isValid" column="is_valid"/>
         <result property="createUser" column="create_user"/>
         <result property="createTime" column="create_time"/>

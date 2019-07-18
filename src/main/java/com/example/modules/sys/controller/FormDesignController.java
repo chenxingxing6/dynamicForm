@@ -3,6 +3,7 @@ package com.example.modules.sys.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.example.common.utils.IdGen;
 import com.example.common.validator.ValidatorUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import com.example.modules.sys.service.FormDesignService;
 import com.example.common.utils.PageUtils;
 import com.example.common.utils.R;
 
+import javax.annotation.Resource;
 
 
 /**
@@ -28,9 +30,11 @@ import com.example.common.utils.R;
  */
 @RestController
 @RequestMapping("sys/formdesign")
-public class FormDesignController {
+public class FormDesignController extends AbstractController{
     @Autowired
     private FormDesignService formDesignService;
+    @Resource
+    private IdGen idGen;
 
     /**
      * 列表
@@ -39,7 +43,6 @@ public class FormDesignController {
     @RequiresPermissions("sys:formdesign:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = formDesignService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -61,8 +64,10 @@ public class FormDesignController {
     @RequestMapping("/save")
     @RequiresPermissions("sys:formdesign:save")
     public R save(@RequestBody FormDesignEntity formDesign){
+        formDesign.setId(idGen.nextId());
+        formDesign.setCreateTime(System.currentTimeMillis());
+        formDesign.setCreateUser(getUserId().toString());
         formDesignService.insert(formDesign);
-
         return R.ok();
     }
 
@@ -73,8 +78,9 @@ public class FormDesignController {
     @RequiresPermissions("sys:formdesign:update")
     public R update(@RequestBody FormDesignEntity formDesign){
         ValidatorUtils.validateEntity(formDesign);
+        formDesign.setOpTime(System.currentTimeMillis());
+        formDesign.setOpUser(getUserId().toString());
         formDesignService.updateAllColumnById(formDesign);//全部更新
-
         return R.ok();
     }
 

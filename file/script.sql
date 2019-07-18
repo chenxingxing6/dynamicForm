@@ -1,12 +1,9 @@
 -- 动态表单设计Sql
 CREATE TABLE `form_design` (
   `id` bigint(20) NOT NULL COMMENT 'ID',
-  `form_name` varchar(200) DEFAULT NULL COMMENT '表单名',
-  `template` text DEFAULT NULL COMMENT '页面编辑好的原始html',
-  `html` text DEFAULT NULL COMMENT '反解析出来的页面html代码',
-  `data_str` text DEFAULT NULL COMMENT '自定义的各个控件字段的jsonarray格式存储',
-  `parse` text DEFAULT NULL COMMENT '',
-  `fields` bigint(10) DEFAULT NULL COMMENT '',
+  `form_name` varchar(200) DEFAULT '' COMMENT '表单名',
+  `html` text COMMENT '页面html代码',
+  `data_str` text COMMENT '控件字段的json',
   `is_valid` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否有效',
   `create_user` varchar(32) DEFAULT NULL COMMENT '登录者',
   `create_time` bigint(20) DEFAULT NULL COMMENT '登录时间',
@@ -14,8 +11,7 @@ CREATE TABLE `form_design` (
   `op_time` bigint(20) DEFAULT NULL COMMENT '更新时间',
   `last_ver` smallint(6) NOT NULL DEFAULT '0' COMMENT '版本号',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='自定义表单';
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='自定义表单'
 
 CREATE TABLE `form_start` (
   `id` bigint(20) NOT NULL COMMENT 'ID',

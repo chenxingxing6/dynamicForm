@@ -2,27 +2,26 @@ $(function () {
     $("#jqGrid").jqGrid({
         url: baseURL + 'sys/formdesign/list',
         datatype: "json",
-        colModel: [			
-			{ label: 'id', name: 'id', index: 'id', width: 50, key: true },
-			{ label: '表单名', name: 'formName', index: 'form_name', width: 80 }, 			
-			{ label: '页面编辑好的原始html', name: 'template', index: 'template', width: 80 }, 			
-			{ label: '反解析出来的页面html代码', name: 'html', index: 'html', width: 80 }, 			
-			{ label: '自定义的各个控件字段的jsonarray格式存储', name: 'dataStr', index: 'data_str', width: 80 }, 			
-			{ label: '', name: 'parse', index: 'parse', width: 80 }, 			
-			{ label: '', name: 'fields', index: 'fields', width: 80 }, 			
-			{ label: '是否有效', name: 'isValid', index: 'is_valid', width: 80 }, 			
-			{ label: '登录者', name: 'createUser', index: 'create_user', width: 80 }, 			
-			{ label: '登录时间', name: 'createTime', index: 'create_time', width: 80 }, 			
-			{ label: '更新者', name: 'opUser', index: 'op_user', width: 80 }, 			
-			{ label: '更新时间', name: 'opTime', index: 'op_time', width: 80 }, 			
-			{ label: '版本号', name: 'lastVer', index: 'last_ver', width: 80 }			
+        colModel: [
+			{ label: 'id', name: 'id', index: 'id', width: 50, key: true, hidden: true},
+			{ label: '表单名', name: 'formName', index: 'form_name', width: 80 },
+			{ label: '创建者', name: 'createUser', index: 'create_user', width: 80 },
+			{ label: '修改时间', name: 'opTime', index: 'op_time', width: 80 },
+            { label: '其他', name: 'viewFlag', index: 'view_flag', width: 80,
+                formatter: function (value, grid, rows, state) {
+                    var result = '';
+                    var type = rows.type;
+                    var viewFlag = rows.viewFlag;
+                    result = result+ '<a href="javascript:void(0);" style="color:#f60" onclick="vm.view('+rows.id+')">查看 </a>';
+                    return result;
+                }}
         ],
 		viewrecords: true,
         height: 385,
         rowNum: 10,
 		rowList : [10,30,50],
-        rownumbers: true, 
-        rownumWidth: 25, 
+        rownumbers: true,
+        rownumWidth: 25,
         autowidth:true,
         multiselect: true,
         pager: "#jqGridPager",
@@ -33,13 +32,13 @@ $(function () {
             records: "page.totalCount"
         },
         prmNames : {
-            page:"page", 
-            rows:"limit", 
+            page:"page",
+            rows:"limit",
             order: "order"
         },
         gridComplete:function(){
         	//隐藏grid底部滚动条
-        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
+        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
         }
     });
 });
@@ -49,7 +48,8 @@ var vm = new Vue({
 	data:{
 		showList: true,
 		title: null,
-		formDesign: {}
+		formDesign: {},
+        html: '<h1>这是一段内容,这是一段内容,这是一段内容,这是一段内容。</h1>'
 	},
 	methods: {
 		query: function () {
@@ -60,6 +60,9 @@ var vm = new Vue({
 			vm.title = "新增";
 			vm.formDesign = {};
 		},
+        view: function(id){
+            vm.getInfo(id);
+        },
 		update: function (event) {
 			var id = getSelectedRow();
 			if(id == null){
@@ -67,7 +70,7 @@ var vm = new Vue({
 			}
 			vm.showList = false;
             vm.title = "修改";
-            
+
             vm.getInfo(id)
 		},
 		saveOrUpdate: function (event) {
@@ -93,7 +96,7 @@ var vm = new Vue({
 			if(ids == null){
 				return ;
 			}
-			
+
 			confirm('确定要删除选中的记录？', function(){
 				$.ajax({
 					type: "POST",
@@ -120,7 +123,7 @@ var vm = new Vue({
 		reload: function (event) {
 			vm.showList = true;
 			var page = $("#jqGrid").jqGrid('getGridParam','page');
-			$("#jqGrid").jqGrid('setGridParam',{ 
+			$("#jqGrid").jqGrid('setGridParam',{
                 page:page
             }).trigger("reloadGrid");
 		}
